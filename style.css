@@ -1,0 +1,187 @@
+/* ============================= */
+/* RESET BÁSICO */
+/* ============================= */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: 'Poppins', sans-serif;
+}
+
+/* ============================= */
+/* SCROLLBAR PERSONALIZADA */
+/* ============================= */
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+background: #22c55e;
+border-radius: 10px;
+}
+
+/* ============================= */
+/* NAVBAR */
+/* ============================= */
+nav a {
+position: relative;
+transition: 0.3s;
+font-weight: 500;
+}
+
+nav a:hover {
+color: #22c55e;
+}
+
+nav a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -4px;
+width: 0%;
+height: 2px;
+background: #22c55e;
+transition: 0.3s;
+}
+
+nav a:hover::after {
+width: 100%;
+}
+
+/* ============================= */
+/* HERO */
+/* ============================= */
+#home {
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+.card-hover {
+transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* ============================= */
+/* BOTÕES */
+/* ============================= */
+button {
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+button:hover {
+transform: scale(1.05);
+}
+
+.bg-brand-accent {
+background-color: #22c55e;
+}
+
+.text-brand-accent {
+color: #22c55e;
+}
+
+.text-brand-gold {
+color: #facc15;
+}
+
+/* ============================= */
+/* CARRINHO LATERAL */
+/* ============================= */
+#cart-drawer {
+box-shadow: -10px 0 30px rgba(0,0,0,0.6);
+z-index: 1000;
+overflow-y: auto;
+}
+
+#cart-drawer::-webkit-scrollbar {
+width: 6px;
+}
+
+#cart-drawer::-webkit-scrollbar-thumb {
+background: #22c55e;
+}
+
+#cart-items div {
+border-bottom: 1px solid #1f2937;
+padding-bottom: 8px;
+margin-bottom: 8px;
+}
+
+/* ============================= */
+/* ANIMAÇÕES */
+/* ============================= */
+.fade-in {
+animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+/* ============================= */
+/* RESPONSIVIDADE */
+/* ============================= */
+@media (max-width: 768px) {
+
+#cart-drawer {
+width: 100%;
+}
+
+nav .md\:flex {
+display: none;
+}
+
+}
+
+/* ============================= */
+/* SEÇÃO BARBEARIA */
+/* ============================= */
+#barbearia {
+background: linear-gradient(to right, #000000, #111827);
+}
+
+/* ============================= */
+/* SEÇÃO LOJA */
+/* ============================= */
+#loja {
+background: #0f172a;
+}
+
+/* ============================= */
+/* EFEITO PREMIUM EM CARDS */
+/* ============================= */
+.bg-gray-900 {
+background: linear-gradient(145deg, #111827, #0f172a);
+border: 1px solid #1f2937;
+}
+
+.bg-gray-900:hover {
+border-color: #22c55e;
+}

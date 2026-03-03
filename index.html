@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sport & Style | Loja Esportiva + Barbearia</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+'brand-primary': '#0f172a',
+'brand-accent': '#22c55e',
+'brand-gold': '#facc15'
+}
+}
+}
+}
+</script>
+</head>
+
+<body class="bg-brand-primary text-white font-sans overflow-x-hidden pt-20">
+
+<!-- NAVBAR -->
+<nav class="fixed w-full bg-black/90 backdrop-blur z-50">
+<div class="max-w-7xl mx-auto px-6 flex justify-between items-start h-20 pt-2">
+
+<h1 class="text-xl md:text-3xl font-bold text-brand-accent">
+<i class="fas fa-dumbbell"></i> SPORT & STYLE
+</h1>
+
+<div class="hidden md:flex gap-8">
+<a href="#home">Início</a>
+<a href="#loja">Loja Esportiva</a>
+<a href="#barbearia">Barbearia</a>
+<a href="#agendamento">Agendamento</a>
+<a href="#contato">Contato</a>
+</div>
+
+<div class="flex items-center gap-4">
+<button onclick="toggleCart()" class="relative">
+<i class="fas fa-shopping-cart text-2xl"></i>
+<span id="cart-count"
+class="absolute -top-2 -right-2 bg-brand-accent text-black text-xs px-2 rounded-full">0</span>
+</button>
+
+<button class="md:hidden text-2xl" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+
+</div>
+
+<div id="mobileMenu"
+class="hidden md:hidden bg-black px-6 pb-6 flex flex-col gap-4">
+<a href="#home">Início</a>
+<a href="#loja">Loja Esportiva</a>
+<a href="#barbearia">Barbearia</a>
+<a href="#agendamento">Agendamento</a>
+<a href="#contato">Contato</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="home"
+class="min-h-screen flex items-center justify-center text-center bg-cover bg-center px-6"
+style="background-image:url('https://images.unsplash.com/photo-1517832606299-7ae9b720a186');">
+
+<div class="bg-black/70 p-6 md:p-10 rounded-xl max-w-xl">
+<h2 class="text-3xl md:text-5xl font-bold mb-4">MODA ESPORTIVA & ESTILO</h2>
+<p class="text-gray-300 mb-6 text-sm md:text-base">
+Vista-se como atleta. Corte-se como campeão.
+</p>
+<a href="#loja"
+class="bg-brand-accent px-6 py-3 rounded-full font-bold text-black inline-block">
+VER PRODUTOS
+</a>
+</div>
+</section>
+
+<!-- LOJA ESPORTIVA -->
+<section id="loja" class="py-20 px-6">
+<h2 class="text-4xl font-bold text-center mb-12 text-brand-accent">LOJA ESPORTIVA</h2>
+
+<div id="loja-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+</section>
+
+<!-- BARBEARIA -->
+<section id="barbearia" class="py-20 bg-black px-6">
+<h2 class="text-4xl font-bold text-center mb-12 text-brand-gold">BARBEARIA</h2>
+
+<div id="barbearia-grid" class="grid md:grid-cols-3 gap-8"></div>
+</section>
+
+<section id="agendamento" class="py-20 bg-gray-900 text-center">
+<h2 class="text-4xl font-bold mb-8 text-brand-gold">Agendamento Barbearia</h2>
+
+<form onsubmit="agendar(event)"
+class="max-w-md mx-auto space-y-4 px-4 sm:px-0">
+
+<input type="text" id="nomeCliente" placeholder="Seu nome"
+class="w-full p-3 rounded bg-black border border-gray-700" required>
+
+<input type="date" id="dataAgendamento"
+class="w-full p-3 rounded bg-black border border-gray-700" required>
+
+<input type="time" id="horaAgendamento"
+class="w-full p-3 rounded bg-black border border-gray-700" required>
+
+<select id="servicoAgendamento"
+class="w-full p-3 rounded bg-black border border-gray-700" required>
+<option value="">Selecione o serviço</option>
+<option>Corte Degradê</option>
+<option>Barba Completa</option>
+<option>Corte + Barba</option>
+</select>
+
+<button class="bg-brand-gold text-black w-full py-3 rounded font-bold">
+AGENDAR HORÁRIO
+</button>
+
+</form>
+
+<div id="lista-agendamentos" class="mt-10 max-w-md mx-auto text-left"></div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="py-20 text-center">
+<h2 class="text-3xl mb-6">Fale Conosco</h2>
+<p>WhatsApp: (18) 99662-2714</p>
+</section>
+
+<div id="cart-overlay"
+class="fixed inset-0 bg-black/60 hidden z-40"
+onclick="toggleCart()">
+</div>
+
+<!-- CARRINHO -->
+<div id="cart-drawer"
+class="fixed right-0 top-0 h-full w-full sm:w-96 bg-black p-6 transform translate-x-full transition duration-300 overflow-y-auto z-50">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-2xl">Seu Pedido</h2>
+
+<button onclick="toggleCart()" class="text-2xl hover:text-brand-accent transition">
+<i class="fas fa-arrow-right"></i>
+</button>
+</div>
+<div id="cart-items" class="mb-4"></div>
+<h3 id="cart-total" class="text-xl mb-4">Total: R$ 0,00</h3>
+<button onclick="checkout()" class="bg-brand-accent w-full py-3 font-bold text-black rounded">
+FINALIZAR NO WHATSAPP
+</button>
+</div>
+
+<!-- MODAL IMAGEM -->
+<div id="imageModal"
+class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
+
+<button onclick="fecharImagem()"
+class="absolute top-6 right-6 text-white text-3xl">
+<i class="fas fa-times"></i>
+</button>
+
+<img id="modalImg"
+class="max-h-[90%] max-w-[90%] rounded-xl shadow-2xl">
+</div>
+
+<script src="script.js"></script>
+
+
+<footer style="text-align:center; padding:10px;">
+  &copy; 2026 Info Tech Araçatuba. Todos os direitos reservados.
+</footer>
+</body>
+</html>
